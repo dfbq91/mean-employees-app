@@ -1,0 +1,24 @@
+###
+GET http://localhost:4000/api/employees
+
+###
+POST http://localhost:4000/api/employees
+Content-Type: application/json
+
+{
+    "name": "Ryan Ray", "position": "Snr. Developer", "office": "Rome", "salary": "22000"
+}
+
+###
+GET http://localhost:4000/api/employees/5f6ca9f5ba2d2426a17ac69a
+
+###
+PUT http://localhost:4000/api/employees/5f6ca9f5ba2d2426a17ac69a
+Content-Type: application/json
+
+{
+    "name": "Joe McMillan", "position": "Digital Marketing Manager", "office": "California", "salary": "20000"
+}
+
+###
+DELETE http://localhost:4000/api/employees/5f6ca9f5ba2d2426a17ac69a
