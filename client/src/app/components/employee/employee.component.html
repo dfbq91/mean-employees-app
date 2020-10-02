@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <!-- We capture all the form with this sintax: #formName="ngForm"
+                and we handle the submit event with ngSubmit=methodDefinedInTsFile
+                sending as parameter the form to the component ts file -->
+                <form #employeeForm="ngForm" (ngSubmit)="addEmployee(employeeForm)">
+                    
+                    <input type="hidden" name="_id" [(ngModel)]='employeeService.selectedEmployee._id'>
+
+                    <div class="form-group">
+                        <!-- In the inputs, we use two-way data binding ([ngModel]),
+                        it allows to declare where the text written by the user,
+                        will be filled  -->
+                        <input type="text" class='form-control' name='name' placeholder='Ingrese nombre completo'
+                            [(ngModel)]='employeeService.selectedEmployee.name'>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class='form-control' name='position' placeholder='Ingresa tu cargo'
+                            [(ngModel)]='employeeService.selectedEmployee.position'>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class='form-control' name='office' placeholder='Ingresa tu oficina'
+                            [(ngModel)]='employeeService.selectedEmployee.office'>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" class='form-control' name='salary' placeholder='Ingresa tu salario'
+                            [(ngModel)]='employeeService.selectedEmployee.salary'>
+                    </div>
+
+                    <button class='btn btn-primary mr-2'>
+                        Save
+                    </button>
+                    <button class='btn btn-secondary' (click)='resetForm(employeeForm)'>
+                        Clean
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <table class='table table-striped'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Office</th>
+                    <th>Operations</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let employee of employeeService.employees'>
+                    <td>{{employee.name}}</td>
+                    <td>{{employee.position}}</td>
+                    <td>{{employee.office}}</td>
+                    <td>
+                        <!-- Onclick allows handle click event -->
+                        <button class='btn btn-primary btn-sm' (click)="editEmployee(employee)">
+                            <i class='material-icons'>edit</i>
+                        </button>
+                        <button class='btn btn-danger btn-sm' (click)="deleteEmployee(employee._id)">
+                            <i class='material-icons'>delete</i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
